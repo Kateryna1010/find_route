@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} List of cities
+{% endblock %}
+{% block content %}
+<h1> List of cities</h1>
+<div class="row">
+    <div class="col-md-8 mx-auto my-5">
+        <table class="table table-striped">
+        {% for object in objects_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'cities:detail' pk=object.pk %}">{{ object.name }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'cities:update' pk=object.pk %}">
+                        <button type="submit" class="btn btn-primary"> Update </button>
+                    </a>
+
+                </td>
+                <td>
+                    <a href="{% url 'cities:delete' pk=object.pk %}">
+                         <button type="submit" class="btn btn-danger"> Delete </button>
+                     </a>
+                </td>
+            </tr>
+        {% endfor %}
+            </table>
+    </div>
+</div>
+<div class="raw">
+    <div class="col-md-4">
+        <form action="" method="post"> {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}
