@@ -14,7 +14,7 @@ class Train(models.Model):
         return f'Train №{self.name} from {self.from_city} to {self.to_city}'
 
     class Meta:
-        ordering = ['travel_time']
+        ordering = ['from_city']
 
     def clean(self):
         if self.from_city == self.to_city:

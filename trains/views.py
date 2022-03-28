@@ -47,7 +47,7 @@ class TrainDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 class TrainListView(ListView):
     model = Train
-    paginate_by = 5
+    paginate_by = 10
     template_name = 'trains/home.html'
 
 

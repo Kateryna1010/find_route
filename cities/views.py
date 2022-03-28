@@ -52,7 +52,7 @@ class CityDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 class CityListView(ListView):
     model = City
-    paginate_by = 5
+    paginate_by = 10
     template_name = 'cities/home.html'
 
     def get_context_data(self, **kwargs):
