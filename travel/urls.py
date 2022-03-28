@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from routes import views
-from routes.views import RouteListView, RouteDetailView
+from routes.views import RouteListView, RouteDetailView, RouteDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +29,7 @@ urlpatterns = [
     path('save_route/', views.save_route, name='save_route'),
     path('list/', RouteListView.as_view(), name='list'),
     path('detail/<int:pk>/', RouteDetailView.as_view(), name='detail'),
+    path('delete/<int:pk>/', RouteDeleteView.as_view(), name='delete'),
     path('cities/', include(('cities.urls', 'cities'))),
+    path('accounts/', include(('accounts.urls', 'accounts'))),
 ]

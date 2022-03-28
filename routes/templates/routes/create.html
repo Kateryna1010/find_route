@@ -7,10 +7,22 @@
 <div class="raw">
     <div class="col-md-4">
         <form action="{% url 'save_route' %}" method="post"> {% csrf_token %}
-            {{ form.as_p }}
-                {% for train in trains %}
-            <p><small>{{train}}</small></p>
-                {% endfor %}
+             {% for f in form.visible_fields %}
+                <p>{{f.label_tag}} {{f}}</p>
+            {% endfor %}
+            {% for hidden in form.hidden_fields %}
+                <p>{{ hidden }}</p>
+            {% endfor %}
+            {% for train in trains %}
+            <table class="table table-sm">
+                <tbody>
+                    <tr>
+                      <td>{{train}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {% endfor %}
+            <br>
             <button type="submit" class="btn btn-primary"> Save </button>
         </form>
     </div>

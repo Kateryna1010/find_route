@@ -12,6 +12,7 @@
                 <th>To</th>
                 <th>Travel time</th>
                 <th>Trains in route</th>
+                <th>&nbsp;</th>
 
             </tr>
 
@@ -23,6 +24,12 @@
                 <td>{% for train in object.trains.all %}
                     <p>{{ train }}</p>
                     {% endfor %}
+                </td>
+                 <td>
+                    <form method="POST" action="{% url 'delete' pk=object.pk %}">
+                       {% csrf_token %}
+                        <input class="btn btn-danger" type="submit" value="Delete" />
+                    </form>
                 </td>
             </tr>
 

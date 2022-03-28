@@ -1,6 +1,9 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, DeleteView
 
 from cities.models import City
 from routes.forms import RouteForm, RouteModelForm
@@ -67,12 +70,20 @@ def save_route(request):
         messages.error(request, 'No routes to save')
         redirect('/')
 
+
 class RouteListView(ListView):
     model = Route
     paginate_by = 5
     template_name = 'routes/list.html'
 
+
 class RouteDetailView(DetailView):
     queryset = Route.objects.all()
     template_name = 'routes/detail.html'
     context_object_name = 'trains'
+
+
+class RouteDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    model = Route
+    success_url = reverse_lazy('home')
+    success_message = 'Deleting succeed'

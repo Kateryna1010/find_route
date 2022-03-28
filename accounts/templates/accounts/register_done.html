@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Registration Success
+{% endblock %}
+{% block content %}
+<style>
+    h3 {
+  text-align: center;
+}
+</style>
+
+<h3>  Hello, {{new_user.username}}. <br><br> Please go to <a href="{% url 'accounts:login' %}">Login page </a> to proceed. </h3>
+
+
+{% endblock %}
